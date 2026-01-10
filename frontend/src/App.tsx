@@ -1,35 +1,55 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Box, Container, Paper, Stack, Typography } from "@mui/material";
+
+const columns = [
+  { key: "todo", title: "Todo" },
+  { key: "doing", title: "Doing"},
+  { key: "done", title: "Done"},
+] as const;
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Container maxWidth="lg" sx={{ py:3 }}>
+      <Stack spacing={2}>
+        <Box>
+          <Typography variant="h4" fontWeight={700}>
+            Task Manager
+          </Typography>
+        </Box>
+
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: { xs: "1fr", md: "repeat(3, 1fr)"},
+            gap: 2,
+          }}
+        >
+          {columns.map((col) =>(
+            <Paper key={col.key} variant="outlined" sx={{ p: 2, borderRadius: 2 }}>
+              <Typography variant="h6" fontWeight={700} sx={{ mb: 1}}>
+                {col.title}
+              </Typography>
+
+              <Stack spacing={1}>
+                <Paper sx={{ p: 1.5, borderRadius: 2}}>
+                  <Typography fontWeight={600}>サンプルタスク</Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    ここにタスクカードが並びます
+                  </Typography>
+                </Paper>
+
+                <Paper sx={{ p: 1.5, borderRadius: 2}}>
+                  <Typography fontWeight={600}>優先度や期限も後で追加</Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    まずは見た目を完成させる
+                  </Typography>
+                </Paper>
+              </Stack>
+            </Paper>
+          ))}
+        </Box>
+      </Stack>
+    </Container>
+  );
 }
 
-export default App
+export default App;
