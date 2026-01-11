@@ -2,7 +2,7 @@ import { type Task } from "./types";
 
 const now = new Date().toISOString(); 
 
-export const mockTask: Task[] = [
+export const mockTasks: Task[] = [
     {
         id: "t1",
         title: "UI作成",

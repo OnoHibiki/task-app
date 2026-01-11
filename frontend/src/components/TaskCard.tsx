@@ -24,7 +24,7 @@ export default function TaskCard({ task, onMove, onDelete }: Props) {
 
     const MoveRight = () => {
         if (task.status === "todo") onMove(task.id, "doing");
-        if (task.status === "doing") onMove(task.id, "doing");
+        if (task.status === "doing") onMove(task.id, "done");
     };
 
     return(
